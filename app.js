@@ -22,11 +22,6 @@ const getAllItems = async () => {
 //     console.error(err);
 //   });
 
-// const moreThanFive = async () => {
-//   const Repos = await getAllItems();
-//   console.log(Repos.filter((Repo) => Repo.stargazers_count > 5));
-// };
-// moreThanFive();
 const lastFiveUp = async () => {
   const Repos = await getAllItems();
   const dates = Repos.map((Repo) => Repo.updated_at)
