@@ -22,12 +22,6 @@ const getAllItems = async () => {
 //     console.error(err);
 //   });
 
-// const moreThanFive = async () => {
-//   const Repos = await getAllItems();
-//   console.log(Repos.filter((Repo) => Repo.stargazers_count > 5));
-// };
-// moreThanFive();
-
 const sumStars = async () => {
   const Repos = await getAllItems();
   const reducer = (previousValue, currentValue) => previousValue + currentValue;
