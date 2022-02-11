@@ -9,9 +9,9 @@ const getAllItems = async () => {
 
     const allItems = response.data;
 
-    moreThanFive(allItems);
-    lastFiveUp(allItems);
-    sumStars(allItems);
+    console.log(moreThanFive(allItems));
+    console.log(lastFiveUp(allItems));
+    console.log(sumStars(allItems));
   } catch (errors) {
     console.error(errors);
   }
@@ -24,7 +24,9 @@ getAllItems();
 // });
 
 const moreThanFive = (Repos) => {
-  console.log(Repos.filter((Repo) => Repo.stargazers_count > 5));
+  const fiveStars = Repos.filter((Repo) => Repo.stargazers_count > 5);
+
+  return fiveStars;
 };
 
 const lastFiveUp = (Repos) => {
@@ -32,10 +34,12 @@ const lastFiveUp = (Repos) => {
     .sort()
     .slice(-5);
 
-  console.log(dates);
+  return dates;
 };
 
 const sumStars = (Repos) => {
   const reducer = (previousValue, currentValue) => previousValue + currentValue;
-  console.log(Repos.map((Repo) => Repo.stargazers_count).reduce(reducer));
+  const allStars = Repos.map((Repo) => Repo.stargazers_count).reduce(reducer);
+
+  return allStars;
 };
