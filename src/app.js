@@ -7,21 +7,30 @@ const getAllItems = async () => {
   try {
     const response = await axios.get(BASE);
 
-    const allItems = response.data;
+    const items = someItems(response.data);
 
-    console.log(moreThanFive(allItems));
-    console.log(lastFiveUp(allItems));
-    console.log(sumStars(allItems));
+    console.log(response.data);
+
+    // console.log(moreThanFive(items));
+    // console.log(lastFiveUp(items));
+    // console.log(sumStars(items));
   } catch (errors) {
     console.error(errors);
   }
 };
 getAllItems();
 // const repos = getAllItems()
-// .then((result) => console.log(result))
-// .catch((err) => {
-// console.error(err);
-// });
+//   .then((result) => console.log(result))
+//   .catch((err) => {
+//     console.error(err);
+//   });
+const someItems = (items) => {
+  const container = [];
+  items.map((item) =>
+    container.push(item.name, item.stargazers_count, item.updated_at)
+  );
+  return container;
+};
 
 const moreThanFive = (repos) => {
   const fiveStars = repos.filter((repo) => repo.stargazers_count > 5);
