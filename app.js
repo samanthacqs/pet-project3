@@ -17,29 +17,30 @@ const getAllItems = async () => {
   }
 };
 getAllItems();
-// const Repos = getAllItems()
+// const repos = getAllItems()
 // .then((result) => console.log(result))
 // .catch((err) => {
 // console.error(err);
 // });
 
-const moreThanFive = (Repos) => {
-  const fiveStars = Repos.filter((Repo) => Repo.stargazers_count > 5);
+const moreThanFive = (repos) => {
+  const fiveStars = repos.filter((repo) => repo.stargazers_count > 5);
 
   return fiveStars;
 };
 
-const lastFiveUp = (Repos) => {
-  const dates = Repos.map((Repo) => Repo.updated_at)
+const lastFiveUp = (repos) => {
+  const dates = repos
+    .map((repo) => repo.updated_at)
     .sort()
     .slice(-5);
 
   return dates;
 };
 
-const sumStars = (Repos) => {
+const sumStars = (repos) => {
   const reducer = (previousValue, currentValue) => previousValue + currentValue;
-  const allStars = Repos.map((Repo) => Repo.stargazers_count).reduce(reducer);
+  const allStars = repos.map((repo) => repo.stargazers_count).reduce(reducer);
 
   return allStars;
 };
