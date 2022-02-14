@@ -9,11 +9,9 @@ const getAllItems = async () => {
 
     const items = someItems(response.data);
 
-    console.log(response.data);
-
-    // console.log(moreThanFive(items));
-    // console.log(lastFiveUp(items));
-    // console.log(sumStars(items));
+    console.log(moreThanFive(items));
+    console.log(lastFiveUp(items));
+    console.log(sumStars(items));
   } catch (errors) {
     console.error(errors);
   }
@@ -26,21 +24,32 @@ getAllItems();
 //   });
 const someItems = (items) => {
   const container = [];
+
   items.map((item) =>
-    container.push(item.name, item.stargazers_count, item.updated_at)
+    container.push({
+      name: item.name,
+      stars: item.stargazers_count,
+      date: item.updated_at,
+    })
   );
   return container;
 };
 
 const moreThanFive = (repos) => {
-  const fiveStars = repos.filter((repo) => repo.stargazers_count > 5);
+  const fiveStars = repos.filter((repo) => repo.stars > 5);
 
   return fiveStars;
 };
 
+const sorted = (repos) => {
+  const dates_sorted = repos.map((repo) => repo.date).sort();
+
+  return dates_sorted;
+};
+
 const lastFiveUp = (repos) => {
   const dates = repos
-    .map((repo) => repo.updated_at)
+    .map((repo) => repo.date)
     .sort()
     .slice(-5);
 
@@ -49,7 +58,7 @@ const lastFiveUp = (repos) => {
 
 const sumStars = (repos) => {
   const reducer = (previousValue, currentValue) => previousValue + currentValue;
-  const allStars = repos.map((repo) => repo.stargazers_count).reduce(reducer);
+  const allStars = repos.map((repo) => repo.stars).reduce(reducer);
 
   return allStars;
 };
