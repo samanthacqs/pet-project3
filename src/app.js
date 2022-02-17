@@ -3,12 +3,20 @@ import axios from "axios";
 
 const BASE = "https://api.github.com/orgs/stackbuilders/repos";
 
-const getAllItems = async () => {
+const mkRepo = (item) => {
+  return {
+    name: item.name,
+    stars: item.stargazers_count,
+    date: item.updated_at,
+  };
+};
+
+const getAllItems = async (repoManager) => {
   try {
-    const response = await axios.get(BASE);
+    const response = await repoManager.get(BASE);
 
-    const items = someItems(response.data);
-
+    const items = response.data.map(mkRepo);
+    console.log(items);
     console.log(moreThanFive(items));
     console.log(lastFiveUp(items));
     console.log(sumStars(items));
@@ -16,35 +24,10 @@ const getAllItems = async () => {
     console.error(errors);
   }
 };
-getAllItems();
-// const repos = getAllItems()
-//   .then((result) => console.log(result))
-//   .catch((err) => {
-//     console.error(err);
-//   });
-const someItems = (items) => {
-  const container = [];
-
-  items.map((item) =>
-    container.push({
-      name: item.name,
-      stars: item.stargazers_count,
-      date: item.updated_at,
-    })
-  );
-  return container;
-};
+getAllItems(axios);
 
 const moreThanFive = (repos) => {
-  const fiveStars = repos.filter((repo) => repo.stars > 5);
-
-  return fiveStars;
-};
-
-const sorted = (repos) => {
-  const dates_sorted = repos.map((repo) => repo.date).sort();
-
-  return dates_sorted;
+  return repos.filter((repo) => repo.stars > 5);
 };
 
 const lastFiveUp = (repos) => {
@@ -58,7 +41,5 @@ const lastFiveUp = (repos) => {
 
 const sumStars = (repos) => {
   const reducer = (previousValue, currentValue) => previousValue + currentValue;
-  const allStars = repos.map((repo) => repo.stars).reduce(reducer);
-
-  return allStars;
+  return repos.map((repo) => repo.stars).reduce(reducer);
 };
