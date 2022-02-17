@@ -31,12 +31,22 @@ const moreThanFive = (repos) => {
 };
 
 const lastFiveUp = (repos) => {
-  const dates = repos
-    .map((repo) => repo.date)
-    .sort()
-    .slice(-5);
+  //   const dates = repos
+  //     .map((repo) => repo.date)
+  //     .sort()
+  //     .slice(-5);
 
-  return dates;
+  //   return dates;
+  return repos
+    .sort(function (a, b) {
+      var keyA = new Date(a.date),
+        keyB = new Date(b.date);
+      // Compare the 2 dates
+      if (keyA < keyB) return -1;
+      if (keyA > keyB) return 1;
+      return 0;
+    })
+    .slice(-5);
 };
 
 const sumStars = (repos) => {
