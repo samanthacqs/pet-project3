@@ -1,5 +1,6 @@
-import axios from axios;
+import mkRepo from "../src/app";
 
+//const functions = require("../src/app");
 test("mkRepo function exist", () => {
-  expect(functions.mkRepo).toBeDefined();
+  expect(mkRepo).toBeDefined();
 });

@@ -11,7 +11,7 @@ export const mkRepo = (item) => {
   };
 };
 
-const getAllItems = async (repoManager) => {
+export const getAllItems = async (repoManager) => {
   try {
     const response = await repoManager.get(BASE);
 
@@ -26,11 +26,11 @@ const getAllItems = async (repoManager) => {
 };
 getAllItems(axios);
 
-const moreThanFive = (repos) => {
+export const moreThanFive = (repos) => {
   return repos.filter((repo) => repo.stars > 5);
 };
 
-const lastFiveUp = (repos) => {
+export const lastFiveUp = (repos) => {
   return repos
     .sort(function (a, b) {
       var keyA = new Date(a.date),
@@ -43,7 +43,7 @@ const lastFiveUp = (repos) => {
     .slice(-5);
 };
 
-const sumStars = (repos) => {
+export const sumStars = (repos) => {
   const reducer = (previousValue, currentValue) => previousValue + currentValue;
   return repos.map((repo) => repo.stars).reduce(reducer);
 };
