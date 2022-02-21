@@ -3,7 +3,7 @@ import axios from "axios";
 
 const BASE = "https://api.github.com/orgs/stackbuilders/repos";
 
-const mkRepo = (item) => {
+export const mkRepo = (item) => {
   return {
     name: item.name,
     stars: item.stargazers_count,
