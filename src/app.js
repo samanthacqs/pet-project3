@@ -16,10 +16,10 @@ export const getAllItems = async (repoManager) => {
     const response = await repoManager.get(BASE);
 
     const items = response.data.map(mkRepo);
-    console.log(items);
-    console.log(moreThanFive(items));
-    console.log(lastFiveUp(items));
-    console.log(sumStars(items));
+    // console.log(items);
+    // console.log(moreThanFive(items));
+    // console.log(lastFiveUp(items));
+    // console.log(sumStars(items));
   } catch (errors) {
     console.error(errors);
   }
@@ -32,14 +32,7 @@ export const moreThanFive = (repos) => {
 
 export const lastFiveUp = (repos) => {
   return repos
-    .sort(function (a, b) {
-      var keyA = new Date(a.date),
-        keyB = new Date(b.date);
-
-      if (keyA < keyB) return -1;
-      if (keyA > keyB) return 1;
-      return 0;
-    })
+    .sort((a, b) => (new Date(a.date) >= new Date(b.date) ? 1 : -1))
     .slice(-5);
 };
 
