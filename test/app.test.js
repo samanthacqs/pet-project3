@@ -2,7 +2,6 @@ import * as functions from "../src/app";
 import { mockRepos } from "./reposData";
 import { makedData } from "./makedData";
 
-//const functions = require("../src/app");
 describe("mkRepo function is working", () => {
   describe("when mkRepo is called with a list of valid objects", () => {
     it("returns all the objects with only certain keys", () => {
@@ -15,7 +14,7 @@ describe("mkRepo function is working", () => {
       expect(mappedRepo).toStrictEqual(repos);
     });
   });
-
+});
 
 describe("moreThanFive function is working", () => {
   describe("when moreThanFive is called with a list of valid objects", () => {
