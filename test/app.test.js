@@ -15,10 +15,7 @@ describe("mkRepo function is working", () => {
       expect(mappedRepo).toStrictEqual(repos);
     });
   });
-  // describe("when mkRepo is called with a list of invalid objects", () => {
-  //   it("fails and throws an error", () => {});
-  // });
-});
+
 
 describe("moreThanFive function is working", () => {
   describe("when moreThanFive is called with a list of valid objects", () => {
